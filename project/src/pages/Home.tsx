@@ -36,22 +36,22 @@ const Home: React.FC = () => {
 
       {/* Info Section */}
       <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border-l-4 border-[#BADA55]">
-        <h3 className="text-2xl font-bold mb-4 text-gray-800">Instrucciones</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg text-gray-600">
+        <h3 className="text-5xl font-bold mb-4 text-gray-800">Instrucciones</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-2xl text-gray-600">
           <div>
             <p className="mb-4">
-              <strong className="text-[#41BAAE]">Paso 1:</strong> Haz clic en "Hacer Pedido" para comenzar
+              <strong className="text-[#41BAAE] text-3xl">Paso 1:</strong> Haz clic en "Hacer Pedido" para comenzar
             </p>
             <p className="mb-4">
-              <strong className="text-[#41BAAE]">Paso 2:</strong> Selecciona a cada persona de la lista
+              <strong className="text-[#41BAAE] text-3xl">Paso 2:</strong> Selecciona a cada persona de la lista
             </p>
           </div>
           <div>
             <p className="mb-4">
-              <strong className="text-[#41BAAE]">Paso 3:</strong> Elige el menú para cada persona
+              <strong className="text-[#41BAAE] text-3xl">Paso 3:</strong> Elige el menú para cada persona
             </p>
             <p className="mb-4">
-              <strong className="text-[#41BAAE]">Paso 4:</strong> Confirma el pedido y descarga el reporte
+              <strong className="text-[#41BAAE] text-3xl">Paso 4:</strong> Confirma el pedido y descarga el reporte
             </p>
           </div>
         </div>
