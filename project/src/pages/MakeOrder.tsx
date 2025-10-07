@@ -45,22 +45,253 @@ const MakeOrder: React.FC = () => {
     const samplePeople: Person[] = [
       {
         id: '1',
-        name: 'Ana María González',
-        photo: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300',
+        name: 'Antonieta Medina',
+        photo: '/images/People/Students/Women/ANTONIETA MEDINA.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
         id: '2',
-        name: 'Carlos Rodríguez',
-        photo: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300',
+        name: 'Catalinia Michelsen',
+        photo: '/images/People/Students/Women/CATALINA MICHELSEN.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
         id: '3',
-        name: 'María José Silva',
-        photo: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=300',
+        name: 'Claudia Arias',
+        photo: '/images/People/Students/Women/CLAUDIA ARIAS.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '4',
+        name: 'Gloria Romero',
+        photo: '/images/People/Students/Women/GLORIA ROMERO.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '5',
+        name: 'Laura Muñoz',
+        photo: '/images/People/Students/Women/LAURA MUÑOZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '6',
+        name: 'Laura Ospina',
+        photo: '/images/People/Students/Women/LAURA OSPINA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '7',
+        name: 'Liliana Rodriguez',
+        photo: '/images/People/Students/Women/LILIANA RODRIGUEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '8',
+        name: 'Liliana Serna',
+        photo: '/images/People/Students/Women/LILIANA SERNA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '9',
+        name: 'Lina Plata',
+        photo: '/images/People/Students/Women/LINA PLATA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '10',
+        name: 'Monica Gómez',
+        photo: '/images/People/Students/Women/MONICA GOMEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '11',
+        name: 'Niria Ordosgoitia',
+        photo: '/images/People/Students/Women/NIRIA ORDOSGOITIA.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '12',
+        name: 'Olga Herrera',
+        photo: '/images/People/Students/Women/OLGA HERRERA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '13',
+        name: 'Paula Torres',
+        photo: '/images/People/Students/Women/PAULA TORRES.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '14',
+        name: 'Riva Plotnicoff',
+        photo: '/images/People/Students/Women/RIVA PLOTNICOFF.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '15',
+        name: 'Silvia Castro',
+        photo: '/images/People/Students/Women/SILVIA CASTRO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '16',
+        name: 'Yuri Moya',
+        photo: '/images/People/Students/Women/YURI MOYA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '17',
+        name: 'Alejandro Mora',
+        photo: '/images/People/Students/Men/ALEJANDRO MORA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '18',
+        name: 'Alvaro Buritica',
+        photo: '/images/People/Students/Men/ALVARO BURITICA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '19',
+        name: 'Angelo Paez',
+        photo: '/images/People/Students/Men/ANGELO PAEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '20',
+        name: 'Carlos Romero',
+        photo: '/images/People/Students/Men/CARLOS ROMERO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '21',
+        name: 'Cesar Jimenez',
+        photo: '/images/People/Students/Men/CESAR JIMENEZ.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '22',
+        name: 'David Gómez',
+        photo: '/images/People/Students/Men/DAVID GOMEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '23',
+        name: 'Eddie Kattan',
+        photo: '/images/People/Students/Men/EDDIE KATTAN.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '24',
+        name: 'Francisco Florez',
+        photo: '/images/People/Students/Men/FRANCISCO FLOREZ.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '25',
+        name: 'Johan Gómez',
+        photo: '/images/People/Students/Men/JOHAN GOMEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '26',
+        name: 'Jorge Galvis',
+        photo: '/images/People/Students/Men/JORGE GALVIS.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '27',
+        name: 'Jorge Vela',
+        photo: '/images/People/Students/Men/JORGE VELA.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '28',
+        name: 'Jose Camargo',
+        photo: '/images/People/Students/Men/JOSE CAMARGO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '29',
+        name: 'Jose Peña',
+        photo: '/images/People/Students/Men/JOSE PEÑA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '30',
+        name: 'Juan Carlos Herrera',
+        photo: '/images/People/Students/Men/JUAN CARLOS HERRERA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '31',
+        name: 'Marcelo Torres',
+        photo: '/images/People/Students/Men/MARCELO TORRES.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '32',
+        name: 'Mauricio Caldeoron',
+        photo: '/images/People/Students/Men/MAURICIO CALDEORON.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '33',
+        name: 'Miguel Valencia',
+        photo: '/images/People/Students/Men/MIGUEL VALENCIA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '34',
+        name: 'Nicolay Colorado',
+        photo: '/images/People/Students/Men/NICOLAY COLORADO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '35',
+        name: 'Pedro Zornoza',
+        photo: '/images/People/Student/Men/PEDRO ZORNOZA.png',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '36',
+        name: 'Ricardo Jose Gomez',
+        photo: '/images/People/Students/Men/RICARDO JOSE GOMEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
@@ -157,7 +388,7 @@ const MakeOrder: React.FC = () => {
         <div className="mb-8 sm:mb-10 lg:mb-12">
           <div className="flex items-center mb-4 sm:mb-6">
             <User size={24} className="mr-2 sm:mr-3 text-[#41BAAE] sm:w-8 sm:h-8" />
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">Estudiantes</h2>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">Aprendices</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {students.map((person) => {
