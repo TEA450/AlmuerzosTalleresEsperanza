@@ -296,16 +296,64 @@ const MakeOrder: React.FC = () => {
         created_at: new Date().toISOString()
       },
       {
-        id: '4',
-        name: 'Prof. Roberto Jiménez',
-        photo: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=300',
+        id: '37',
+        name: 'Prof. Alba Lucia Puentes',
+        photo: '/images/People/Workers/ALBA LUCIA PUENTES.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '5',
-        name: 'Prof. Carmen Vargas',
-        photo: 'https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg?auto=compress&cs=tinysrgb&w=300',
+        id: '38',
+        name: 'Prof. Alexandra Sarmiento',
+        photo: '/images/People/Workers/ALEXANDRA SARMIENTO.jpeg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '39',
+        name: 'Prof. Angela Martinez',
+        photo: '/images/People/Workers/ANGELA MARTINEZ.jpg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '40',
+        name: 'Prof. Felipe Amaya',
+        photo: '/images/People/Workers/FELIPE AMAYA.jpeg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '41',
+        name: 'Prof. Jessica Cardenas',
+        photo: '/images/People/Workers/JESSICA CARDENAS.jpg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '42',
+        name: 'Prof. Nicolle Angel',
+        photo: '/images/People/Workers/NICOLLE ANGEL.jpg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },{
+        id: '43',
+        name: 'Prof. Pastor Jimenez',
+        photo: '/images/People/Workers/PASTOR JIMENEZ.jpeg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '44',
+        name: 'Prof. Paula Ortiz',
+        photo: '/images/People/Workers/PAULA ORTIZ.jpg',
+        category: 'teacher',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '45',
+        name: 'Prof. Steven Coy',
+        photo: '/images/People/Workers/STEVEN COY.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       }
