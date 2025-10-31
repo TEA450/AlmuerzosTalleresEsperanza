@@ -72,6 +72,11 @@ const OrderSummary: React.FC = () => {
         created_at: new Date().toISOString()
       }));
 
+      // Save to localStorage for history
+      const existingOrders = JSON.parse(localStorage.getItem('allOrders') || '[]');
+      const updatedOrders = [...existingOrders, ...ordersToSave];
+      localStorage.setItem('allOrders', JSON.stringify(updatedOrders));
+
       const { error } = await supabase
         .from('orders')
         .insert(ordersToSave);
@@ -104,15 +109,20 @@ const OrderSummary: React.FC = () => {
   };
 
   const exportToExcel = () => {
-    const data = orders.map(order => ({
+    // Filter orders to only include those with actual menu items
+    const validOrders = orders.filter(order =>
+      order.fruit_or_soup || order.juice_or_lemonade || order.main_dish
+    );
+
+    const data = validOrders.map(order => ({
       'Nombre': order.person_name || '',
       'Entrada': order.fruit_or_soup ? (order.fruit_or_soup === 'fruit' ? 'Fruta' : 'Sopa') : '',
       'Bebida': order.juice_or_lemonade ? (order.juice_or_lemonade === 'juice' ? 'Jugo' : 'Limonada') : '',
-      'Plato Principal': order.main_dish ? 
-        (order.main_dish === 'spaghetti' ? 'Espaguetis' : 
+      'Plato Principal': order.main_dish ?
+        (order.main_dish === 'spaghetti' ? 'Espaguetis' :
          order.main_dish === 'beef' ? 'Carne' : 'Pechuga de Pollo') : '',
       'Observaciones': order.observations || '',
-      'Forma de Pago': order.payment_method === 'cash' ? 'Efectivo' : 'Voucher',
+      'Forma de Pago': order.payment_method === 'cash' ? 'Efectivo' : order.payment_method === 'voucher' ? 'Voucher' : 'NA',
       'Fecha': order.order_date || new Date().toISOString().split('T')[0]
     }));
 
@@ -136,33 +146,38 @@ const OrderSummary: React.FC = () => {
   };
 
   const exportToPDF = () => {
+    // Filter orders to only include those with actual menu items
+    const validOrders = orders.filter(order =>
+      order.fruit_or_soup || order.juice_or_lemonade || order.main_dish
+    );
+
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
-    
+
     // Header
     doc.setFontSize(20);
     doc.text('Talleres Esperanza - Pedidos de Almuerzo', pageWidth / 2, 20, { align: 'center' });
-    
+
     doc.setFontSize(12);
     doc.text(`Fecha: ${new Date().toLocaleDateString('es-ES')}`, pageWidth / 2, 30, { align: 'center' });
-    
+
     let yPosition = 50;
-    
+
     // Orders
     doc.setFontSize(14);
     doc.text('Pedidos:', 20, yPosition);
     yPosition += 10;
-    
+
     doc.setFontSize(10);
-    orders.forEach(order => {
+    validOrders.forEach(order => {
       if (yPosition > 250) {
         doc.addPage();
         yPosition = 20;
       }
-      
+
       const menuText = getMenuText(order);
-      const paymentText = order.payment_method === 'cash' ? 'Efectivo' : 'Voucher';
-      
+      const paymentText = order.payment_method === 'cash' ? 'Efectivo' : order.payment_method === 'voucher' ? 'Voucher' : 'NA';
+
       doc.text(`• ${order.person_name}: ${menuText} (${paymentText})`, 20, yPosition);
       if (order.observations) {
         yPosition += 5;
@@ -170,7 +185,7 @@ const OrderSummary: React.FC = () => {
       }
       yPosition += 8;
     });
-    
+
     // Summary
     yPosition += 10;
     doc.setFontSize(12);
@@ -182,7 +197,7 @@ const OrderSummary: React.FC = () => {
     doc.text(`Pagos en efectivo: ${getCashCount()}`, 20, yPosition);
     yPosition += 5;
     doc.text(`Pagos con voucher: ${getVoucherCount()}`, 20, yPosition);
-    
+
     const fileName = `pedidos_${new Date().toISOString().split('T')[0]}.pdf`;
     doc.save(fileName);
   };

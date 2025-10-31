@@ -22,11 +22,28 @@ const History: React.FC = () => {
 
   const loadData = async () => {
     try {
-      // Load orders
-      const { data: ordersData, error: ordersError } = await supabase
-        .from('orders')
-        .select('*')
-        .order('created_at', { ascending: false });
+      // First try to load from localStorage
+      const storedOrders = localStorage.getItem('allOrders');
+      if (storedOrders) {
+        const parsedOrders = JSON.parse(storedOrders);
+        setOrders(parsedOrders);
+      } else {
+        // Fallback to database or sample data
+        const { data: ordersData, error: ordersError } = await supabase
+          .from('orders')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (ordersError) {
+          console.error('Error loading data:', ordersError);
+          setSampleHistoryData();
+        } else {
+          setOrders(ordersData || []);
+          if ((ordersData || []).length === 0) {
+            setSampleHistoryData();
+          }
+        }
+      }
 
       // Load reports
       const { data: reportsData, error: reportsError } = await supabase
@@ -34,17 +51,10 @@ const History: React.FC = () => {
         .select('*')
         .order('report_date', { ascending: false });
 
-      if (ordersError || reportsError) {
-        console.error('Error loading data:', ordersError || reportsError);
-        // Use sample data if database is not available
-        setSampleHistoryData();
+      if (reportsError) {
+        console.error('Error loading reports:', reportsError);
       } else {
-        setOrders(ordersData || []);
         setReports(reportsData || []);
-        
-        if ((ordersData || []).length === 0) {
-          setSampleHistoryData();
-        }
       }
     } catch (err) {
       console.error('Database connection error:', err);
@@ -58,7 +68,19 @@ const History: React.FC = () => {
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
-    
+
+    // Use local date to avoid timezone issues
+    const formatLocalDate = (date: Date) => {
+      const adjustedDate = new Date(date);
+      adjustedDate.setDate(adjustedDate.getDate() + 1); // Add 1 day to fix timezone offset
+      return adjustedDate.getFullYear() + '-' +
+        String(adjustedDate.getMonth() + 1).padStart(2, '0') + '-' +
+        String(adjustedDate.getDate()).padStart(2, '0');
+    };
+
+    const todayStr = formatLocalDate(today);
+    const yesterdayStr = formatLocalDate(yesterday);
+
     const sampleOrders: Order[] = [
       {
         id: '1',
@@ -70,7 +92,7 @@ const History: React.FC = () => {
         main_dish: 'chicken',
         observations: '',
         payment_method: 'cash',
-        order_date: today.toISOString().split('T')[0],
+        order_date: todayStr,
         created_at: today.toISOString()
       },
       {
@@ -83,7 +105,7 @@ const History: React.FC = () => {
         main_dish: 'beef',
         observations: 'Sin cebolla',
         payment_method: 'voucher',
-        order_date: today.toISOString().split('T')[0],
+        order_date: todayStr,
         created_at: today.toISOString()
       },
       {
@@ -96,7 +118,7 @@ const History: React.FC = () => {
         main_dish: 'spaghetti',
         observations: '',
         payment_method: 'cash',
-        order_date: yesterday.toISOString().split('T')[0],
+        order_date: yesterdayStr,
         created_at: yesterday.toISOString()
       }
     ];
@@ -104,7 +126,7 @@ const History: React.FC = () => {
     const sampleReports: DailyReport[] = [
       {
         id: '1',
-        report_date: today.toISOString().split('T')[0],
+        report_date: todayStr,
         total_orders: 2,
         cash_orders: 1,
         voucher_orders: 1,
@@ -112,7 +134,7 @@ const History: React.FC = () => {
       },
       {
         id: '2',
-        report_date: yesterday.toISOString().split('T')[0],
+        report_date: yesterdayStr,
         total_orders: 1,
         cash_orders: 1,
         voucher_orders: 0,
@@ -163,19 +185,30 @@ const History: React.FC = () => {
   };
 
   const exportHistory = () => {
-    const data = filteredOrders.map(order => ({
+    // Filter orders to only include those with actual menu items
+    const validOrders = filteredOrders.filter(order =>
+      order.fruit_or_soup || order.juice_or_lemonade || order.main_dish
+    );
+
+    const data = validOrders.map(order => ({
       'Fecha': order.order_date,
       'Nombre': order.person_name,
       'Menú': getMenuText(order),
       'Observaciones': order.observations || '',
-      'Forma de Pago': order.payment_method === 'cash' ? 'Efectivo' : 'Voucher'
+      'Forma de Pago': order.payment_method === 'cash' ? 'Efectivo' : order.payment_method === 'voucher' ? 'Voucher' : 'NA'
     }));
 
     const ws = XLSX.utils.json_to_sheet(data);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Historial');
 
-    const fileName = `historial_pedidos_${new Date().toISOString().split('T')[0]}.xlsx`;
+    // Use local date instead of UTC to avoid timezone issues
+    const today = new Date();
+    const localDate = today.getFullYear() + '-' +
+      String(today.getMonth() + 1).padStart(2, '0') + '-' +
+      String(today.getDate()).padStart(2, '0');
+
+    const fileName = `historial_pedidos_${localDate}.xlsx`;
     XLSX.writeFile(wb, fileName);
   };
 
@@ -215,7 +248,14 @@ const History: React.FC = () => {
   }
 
   const stats = getTotalStats();
-  const personStats = getPersonStats();
+
+  // Group orders by date
+  const groupedOrders = filteredOrders.reduce((acc, order) => {
+    const date = order.order_date;
+    if (!acc[date]) acc[date] = [];
+    acc[date].push(order);
+    return acc;
+  }, {} as Record<string, Order[]>);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -277,7 +317,7 @@ const History: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500">
           <div className="flex items-center">
             <span className="text-3xl mr-4">💵</span>
@@ -287,7 +327,7 @@ const History: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500">
           <div className="flex items-center">
             <span className="text-3xl mr-4">🎫</span>
@@ -297,7 +337,7 @@ const History: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
           <div className="flex items-center">
             <TrendingUp size={32} className="text-orange-500 mr-4" />
@@ -305,31 +345,6 @@ const History: React.FC = () => {
               <div className="text-3xl font-bold text-gray-800">{stats.vouchersUsed}</div>
               <div className="text-lg text-gray-600">Vouchers Usados</div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Person Statistics */}
-      <div className="bg-white rounded-2xl shadow-lg mb-8">
-        <div className="bg-[#BADA55] text-gray-800 p-4 rounded-t-2xl">
-          <h2 className="text-2xl font-bold">Estadísticas por Persona</h2>
-        </div>
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
-            {personStats.map((person, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4 border">
-                <div className="text-lg font-bold text-gray-800">{person.name}</div>
-                <div className="text-sm text-gray-600">
-                  Total: {person.count} pedidos
-                </div>
-                <div className="text-sm text-gray-600">
-                  Vouchers: {person.vouchers}
-                </div>
-                <div className="text-sm text-gray-600">
-                  Efectivo: {person.count - person.vouchers}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -349,33 +364,39 @@ const History: React.FC = () => {
           </div>
         </div>
         <div className="p-6">
-          {filteredOrders.length > 0 ? (
-            <div className="space-y-3 max-h-96 overflow-y-auto">
-              {filteredOrders.map((order) => (
-                <div key={order.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50">
-                  <div className="text-sm text-gray-500 w-24">
-                    {new Date(order.order_date).toLocaleDateString('es-ES')}
-                  </div>
-                  <img
-                    src={order.person_photo}
-                    alt={order.person_name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-[#BADA55]"
-                  />
-                  <div className="flex-grow">
-                    <div className="font-bold text-gray-800">{order.person_name}</div>
-                    <div className="text-sm text-gray-600">{getMenuText(order)}</div>
-                    {order.observations && (
-                      <div className="text-xs text-gray-500 italic">Obs: {order.observations}</div>
-                    )}
-                  </div>
-                  <div className="text-right">
-                    <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                      order.payment_method === 'cash' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {order.payment_method === 'cash' ? 'Efectivo' : 'Voucher'}
-                    </div>
+          {Object.keys(groupedOrders).length > 0 ? (
+            <div className="space-y-6">
+              {Object.keys(groupedOrders).sort().reverse().map((date) => (
+                <div key={date} className="border-b pb-4">
+                  <h3 className="text-lg font-bold text-gray-800 mb-3">
+                    {new Date(date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                  </h3>
+                  <div className="space-y-3">
+                    {groupedOrders[date].map((order) => (
+                      <div key={order.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50">
+                        <img
+                          src={order.person_photo}
+                          alt={order.person_name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-[#BADA55]"
+                        />
+                        <div className="flex-grow">
+                          <div className="font-bold text-gray-800">{order.person_name}</div>
+                          <div className="text-sm text-gray-600">{getMenuText(order)}</div>
+                          {order.observations && (
+                            <div className="text-xs text-gray-500 italic">Obs: {order.observations}</div>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                            order.payment_method === 'cash'
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-blue-100 text-blue-800'
+                          }`}>
+                            {order.payment_method === 'cash' ? 'Efectivo' : 'Voucher'}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}

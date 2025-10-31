@@ -45,7 +45,7 @@ const OrderOptions: React.FC = () => {
           },
           {
             id: '2',
-            name: 'Catalinia Michelsen',
+            name: 'Catalina Michelsen',
             photo: '/images/People/Students/Women/CATALINA MICHELSEN.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
@@ -150,202 +150,223 @@ const OrderOptions: React.FC = () => {
           },
           {
             id: '17',
+            name: 'Adriana Garcia',
+            photo: '/images/People/Students/Women/ADRIANA GARCIA.jpeg',
+            category: 'student' as const,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '18',
+            name: 'Andrea Bayona',
+            photo: '/images/People/Students/Women/ANDREA BAYONA.jpg',
+            category: 'student' as const,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '19',
+            name: 'Angela Acosta',
+            photo: '/images/People/Students/Women/ANGELA ACOSTA.jpeg',
+            category: 'student' as const,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '20',
             name: 'Alejandro Mora',
             photo: '/images/People/Students/Men/ALEJANDRO MORA.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '18',
+            id: '21',
             name: 'Alvaro Buritica',
             photo: '/images/People/Students/Men/ALVARO BURITICA.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '19',
+            id: '22',
             name: 'Angelo Paez',
             photo: '/images/People/Students/Men/ANGELO PAEZ.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '20',
+            id: '23',
             name: 'Carlos Romero',
             photo: '/images/People/Students/Men/CARLOS ROMERO.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '21',
+            id: '24',
             name: 'Cesar Jimenez',
             photo: '/images/People/Students/Men/CESAR JIMENEZ.jpeg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '22',
+            id: '25',
             name: 'David Gómez',
             photo: '/images/People/Students/Men/DAVID GOMEZ.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '23',
+            id: '26',
             name: 'Eddie Kattan',
             photo: '/images/People/Students/Men/EDDIE KATTAN.jpeg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '24',
+            id: '27',
             name: 'Francisco Florez',
             photo: '/images/People/Students/Men/FRANCISCO FLOREZ.jpeg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '25',
+            id: '28',
             name: 'Johan Gómez',
             photo: '/images/People/Students/Men/JOHAN GOMEZ.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '26',
+            id: '29',
             name: 'Jorge Galvis',
             photo: '/images/People/Students/Men/JORGE GALVIS.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '27',
+            id: '30',
             name: 'Jorge Vela',
             photo: '/images/People/Students/Men/JORGE VELA.jpeg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '28',
+            id: '31',
             name: 'Jose Camargo',
             photo: '/images/People/Students/Men/JOSE CAMARGO.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '29',
+            id: '32',
             name: 'Jose Peña',
             photo: '/images/People/Students/Men/JOSE PEÑA.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '30',
+            id: '33',
             name: 'Juan Carlos Herrera',
             photo: '/images/People/Students/Men/JUAN CARLOS HERRERA.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '31',
+            id: '34',
             name: 'Marcelo Torres',
             photo: '/images/People/Students/Men/MARCELO TORRES.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '32',
+            id: '35',
             name: 'Mauricio Caldeoron',
             photo: '/images/People/Students/Men/MAURICIO CALDEORON.jpeg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '33',
+            id: '36',
             name: 'Miguel Valencia',
             photo: '/images/People/Students/Men/MIGUEL VALENCIA.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '34',
+            id: '37',
             name: 'Nicolay Colorado',
             photo: '/images/People/Students/Men/NICOLAY COLORADO.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '35',
+            id: '38',
             name: 'Pedro Zornoza',
-            photo: '/images/People/Student/Men/PEDRO ZORNOZA.png',
+            photo: '/images/People/Students/Men/PEDRO ZORNOZA.png',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '36',
+            id: '39',
             name: 'Ricardo Jose Gomez',
             photo: '/images/People/Students/Men/RICARDO JOSE GOMEZ.jpg',
             category: 'student' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '37',
+            id: '40',
             name: 'Prof. Alba Lucia Puentes',
             photo: '/images/People/Workers/ALBA LUCIA PUENTES.jpg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '38',
+            id: '41',
             name: 'Prof. Alexandra Sarmiento',
             photo: '/images/People/Workers/ALEXANDRA SARMIENTO.jpeg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '39',
+            id: '42',
             name: 'Prof. Angela Martinez',
             photo: '/images/People/Workers/ANGELA MARTINEZ.jpg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '40',
+            id: '43',
             name: 'Prof. Felipe Amaya',
             photo: '/images/People/Workers/FELIPE AMAYA.jpeg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '41',
+            id: '44',
             name: 'Prof. Jessica Cardenas',
             photo: '/images/People/Workers/JESSICA CARDENAS.jpg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '42',
+            id: '45',
             name: 'Prof. Nicolle Angel',
             photo: '/images/People/Workers/NICOLLE ANGEL.jpg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '43',
+            id: '46',
             name: 'Prof. Pastor Jimenez',
             photo: '/images/People/Workers/PASTOR JIMENEZ.jpeg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
-          }, 
+          },
           {
-            id: '44',
+            id: '47',
             name: 'Prof. Paula Ortiz',
             photo: '/images/People/Workers/PAULA ORTIZ.jpg',
             category: 'teacher' as const,
             created_at: new Date().toISOString()
           },
           {
-            id: '45',
+            id: '48',
             name: 'Prof. Steven Coy',
             photo: '/images/People/Workers/STEVEN COY.jpeg',
             category: 'teacher' as const,
@@ -378,7 +399,7 @@ const OrderOptions: React.FC = () => {
   const handleSave = () => {
     const stored = localStorage.getItem('currentOrders');
     const orders = stored ? JSON.parse(stored) : [];
-    
+
     const updatedOrder = {
       ...order,
       person_name: person?.name,
@@ -411,7 +432,7 @@ const OrderOptions: React.FC = () => {
 
     const stored = localStorage.getItem('currentOrders');
     const orders = stored ? JSON.parse(stored) : [];
-    
+
     const existingIndex = orders.findIndex((o: Partial<Order>) => o.person_id === personId);
     if (existingIndex >= 0) {
       orders[existingIndex] = updatedOrder;
@@ -420,7 +441,7 @@ const OrderOptions: React.FC = () => {
     }
 
     localStorage.setItem('currentOrders', JSON.stringify(orders));
-    navigate('/make-order');
+    // Stay on the same page instead of navigating back
   };
 
   if (loading) {

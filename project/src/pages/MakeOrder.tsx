@@ -15,6 +15,22 @@ const MakeOrder: React.FC = () => {
     loadStoredOrders();
   }, []);
 
+  useEffect(() => {
+    if (!loading) {
+      // Scroll to the last ordered person if available
+      const lastOrdered = localStorage.getItem('lastOrderedPerson');
+      if (lastOrdered) {
+        setTimeout(() => {
+          const element = document.getElementById(lastOrdered);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          localStorage.removeItem('lastOrderedPerson');
+        }, 100); // Small delay to ensure DOM is ready
+      }
+    }
+  }, [loading]);
+
   const loadPeople = async () => {
     try {
       const { data, error } = await supabase
@@ -411,6 +427,34 @@ const MakeOrder: React.FC = () => {
     navigate('/order-summary');
   };
 
+  const handleNoMeal = (personId: string) => {
+    const person = people.find(p => p.id === personId);
+    const updatedOrder = {
+      person_id: personId,
+      fruit_or_soup: null,
+      juice_or_lemonade: null,
+      main_dish: null,
+      observations: 'No almuerza hoy',
+      person_name: person?.name,
+      person_photo: person?.photo,
+      order_date: new Date().toISOString().split('T')[0],
+      payment_method: 'NA'
+    };
+
+    const stored = localStorage.getItem('currentOrders');
+    const currentOrders = stored ? JSON.parse(stored) : [];
+
+    const existingIndex = currentOrders.findIndex((o: Partial<Order>) => o.person_id === personId);
+    if (existingIndex >= 0) {
+      currentOrders[existingIndex] = updatedOrder;
+    } else {
+      currentOrders.push(updatedOrder);
+    }
+
+    localStorage.setItem('currentOrders', JSON.stringify(currentOrders));
+    setOrders(currentOrders);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
@@ -464,42 +508,59 @@ const MakeOrder: React.FC = () => {
             {students.map((person) => {
               const status = getOrderStatus(person.id);
               return (
-                <Link
+                <div
                   key={person.id}
-                  to={`/order-options/${person.id}`}
+                  id={person.id}
                   className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-[#41BAAE] relative"
                 >
                   {status === 'ordered' && (
-                    <CheckCircle 
-                      size={24} 
-                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-green-500 bg-white rounded-full sm:w-8 sm:h-8" 
+                    <CheckCircle
+                      size={24}
+                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-green-500 bg-white rounded-full sm:w-8 sm:h-8"
                     />
                   )}
                   {status === 'no-meal' && (
-                    <XCircle 
-                      size={24} 
-                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-red-500 bg-white rounded-full sm:w-8 sm:h-8" 
+                    <XCircle
+                      size={24}
+                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-red-500 bg-white rounded-full sm:w-8 sm:h-8"
                     />
                   )}
                   <div className="text-center">
                     <img
                       src={person.photo}
                       alt={person.name}
-                      className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto mb-3 sm:mb-4 object-cover border-2 sm:border-4 border-[#BADA55]"
+                      className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full mx-auto mb-3 sm:mb-4 object-cover border-2 sm:border-4 border-[#BADA55]"
                     />
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-1 sm:mb-2">{person.name}</h3>
-                    <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Aprendiz</div>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">{person.name}</h3>
+                    <div className="text-sm sm:text-base text-gray-500 mb-3 sm:mb-4">Aprendiz</div>
                     {status === 'ordered' && (
-                      <div className="text-green-600 font-semibold text-xs sm:text-sm">✓ Pedido realizado</div>
+                      <div className="text-green-600 font-semibold text-sm sm:text-base">✓ Pedido realizado</div>
                     )}
                     {status === 'no-meal' && (
-                      <div className="text-red-600 font-semibold text-xs sm:text-sm">✗ Sin almuerzo</div>
+                      <div className="text-red-600 font-semibold text-sm sm:text-base">✗ Sin almuerzo</div>
                     )}
                     {status === 'pending' && (
-                      <div className="text-gray-500 text-xs sm:text-sm">Pendiente</div>
+                      <div className="text-gray-500 text-sm sm:text-base">Pendiente</div>
                     )}
                   </div>
-                </Link>
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4">
+                    <button
+                      onClick={() => handleNoMeal(person.id)}
+                      className="flex-1 bg-red-500 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg font-bold hover:bg-red-600 transition-colors duration-200"
+                    >
+                      No Almuerza Hoy
+                    </button>
+                    <button
+                      onClick={() => {
+                        localStorage.setItem('lastOrderedPerson', person.id);
+                        navigate(`/order-options/${person.id}`);
+                      }}
+                      className="flex-1 bg-gradient-to-r from-[#41BAAE] to-[#BADA55] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg font-bold hover:shadow-lg transition-all duration-200"
+                    >
+                      Hacer Pedido
+                    </button>
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -517,42 +578,59 @@ const MakeOrder: React.FC = () => {
             {teachers.map((person) => {
               const status = getOrderStatus(person.id);
               return (
-                <Link
+                <div
                   key={person.id}
-                  to={`/order-options/${person.id}`}
+                  id={person.id}
                   className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-[#BADA55] relative"
                 >
                   {status === 'ordered' && (
-                    <CheckCircle 
-                      size={24} 
-                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-green-500 bg-white rounded-full sm:w-8 sm:h-8" 
+                    <CheckCircle
+                      size={24}
+                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-green-500 bg-white rounded-full sm:w-8 sm:h-8"
                     />
                   )}
                   {status === 'no-meal' && (
-                    <XCircle 
-                      size={24} 
-                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-red-500 bg-white rounded-full sm:w-8 sm:h-8" 
+                    <XCircle
+                      size={24}
+                      className="absolute top-2 right-2 sm:top-4 sm:right-4 text-red-500 bg-white rounded-full sm:w-8 sm:h-8"
                     />
                   )}
                   <div className="text-center">
                     <img
                       src={person.photo}
                       alt={person.name}
-                      className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto mb-3 sm:mb-4 object-cover border-2 sm:border-4 border-[#41BAAE]"
+                      className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full mx-auto mb-3 sm:mb-4 object-cover border-2 sm:border-4 border-[#41BAAE]"
                     />
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-1 sm:mb-2">{person.name}</h3>
-                    <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Profesor</div>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">{person.name}</h3>
+                    <div className="text-sm sm:text-base text-gray-500 mb-3 sm:mb-4">Profesor</div>
                     {status === 'ordered' && (
-                      <div className="text-green-600 font-semibold text-xs sm:text-sm">✓ Pedido realizado</div>
+                      <div className="text-green-600 font-semibold text-sm sm:text-base">✓ Pedido realizado</div>
                     )}
                     {status === 'no-meal' && (
-                      <div className="text-red-600 font-semibold text-xs sm:text-sm">✗ Sin almuerzo</div>
+                      <div className="text-red-600 font-semibold text-sm sm:text-base">✗ Sin almuerzo</div>
                     )}
                     {status === 'pending' && (
-                      <div className="text-gray-500 text-xs sm:text-sm">Pendiente</div>
+                      <div className="text-gray-500 text-sm sm:text-base">Pendiente</div>
                     )}
                   </div>
-                </Link>
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4">
+                    <button
+                      onClick={() => handleNoMeal(person.id)}
+                      className="flex-1 bg-red-500 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg font-bold hover:bg-red-600 transition-colors duration-200"
+                    >
+                      No Almuerza Hoy
+                    </button>
+                    <button
+                      onClick={() => {
+                        localStorage.setItem('lastOrderedPerson', person.id);
+                        navigate(`/order-options/${person.id}`);
+                      }}
+                      className="flex-1 bg-gradient-to-r from-[#41BAAE] to-[#BADA55] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-lg font-bold hover:shadow-lg transition-all duration-200"
+                    >
+                      Hacer Pedido
+                    </button>
+                  </div>
+                </div>
               );
             })}
           </div>
