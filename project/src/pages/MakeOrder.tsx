@@ -104,7 +104,7 @@ const MakeOrder: React.FC = () => {
       {
         id: '7',
         name: 'Liliana Rodriguez',
-        photo: '/images/People/Students/Women/LILIANA RODIGUEZ.jpg',
+        photo: '/images/People/Students/Women/LILIANA RODRIGUEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },

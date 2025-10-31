@@ -148,15 +148,20 @@ const History: React.FC = () => {
 
   const filterOrders = () => {
     let filtered = orders;
-    
+
+    // Filter to only include orders with actual menu items
+    filtered = filtered.filter(order =>
+      order.fruit_or_soup || order.juice_or_lemonade || order.main_dish
+    );
+
     if (startDate) {
       filtered = filtered.filter(order => order.order_date >= startDate);
     }
-    
+
     if (endDate) {
       filtered = filtered.filter(order => order.order_date <= endDate);
     }
-    
+
     setFilteredOrders(filtered);
   };
 

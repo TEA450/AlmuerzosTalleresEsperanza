@@ -1,10 +1,10 @@
 # AlmuerzosTalleresEsperanza
 
-Página web dedicada a la gestión de pedidos de almuerzos para estudiantes y profesores en Talleres Esperanza.
+Página web dedicada a la gestión de pedidos de almuerzos para aprendices y profesores en Talleres Esperanza.
 
 ## Descripción
 
-Esta aplicación web permite gestionar pedidos de almuerzos de manera fácil y accesible. Los usuarios pueden seleccionar personas (estudiantes y profesores), configurar sus pedidos de comida, y generar reportes en PDF. La aplicación utiliza React con TypeScript, Vite para el desarrollo, Tailwind CSS para el estilo, y Supabase como base de datos.
+Esta aplicación web permite gestionar pedidos de almuerzos de manera fácil y accesible. Los usuarios pueden seleccionar personas (aprendices y profesores), configurar sus pedidos de comida, y generar reportes en PDF. La aplicación utiliza React con TypeScript, Vite para el desarrollo, Tailwind CSS para el estilo, y Supabase como base de datos.
 
 ## Requisitos Previos
 
