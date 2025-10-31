@@ -52,7 +52,7 @@ const MakeOrder: React.FC = () => {
       },
       {
         id: '2',
-        name: 'Catalinia Michelsen',
+        name: 'Catalina Michelsen',
         photo: '/images/People/Students/Women/CATALINA MICHELSEN.jpg',
         category: 'student',
         created_at: new Date().toISOString()
@@ -88,7 +88,7 @@ const MakeOrder: React.FC = () => {
       {
         id: '7',
         name: 'Liliana Rodriguez',
-        photo: '/images/People/Students/Women/LILIANA RODRIGUEZ.jpg',
+        photo: '/images/People/Students/Women/LILIANA RODIGUEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
@@ -157,201 +157,223 @@ const MakeOrder: React.FC = () => {
       },
       {
         id: '17',
+        name: 'Adriana Garcia',
+        photo: '/images/People/Students/Women/ADRIANA GARCIA.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '18',
+        name: 'Andrea Bayona',
+        photo: '/images/People/Students/Women/ANDREA BAYONA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '19',
+        name: 'Angela Acosta',
+        photo: '/images/People/Students/Women/ANGELA ACOSTA.jpeg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '20',
         name: 'Alejandro Mora',
         photo: '/images/People/Students/Men/ALEJANDRO MORA.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '18',
+        id: '21',
         name: 'Alvaro Buritica',
         photo: '/images/People/Students/Men/ALVARO BURITICA.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '19',
+        id: '22',
         name: 'Angelo Paez',
         photo: '/images/People/Students/Men/ANGELO PAEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '20',
+        id: '23',
         name: 'Carlos Romero',
         photo: '/images/People/Students/Men/CARLOS ROMERO.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '21',
+        id: '24',
         name: 'Cesar Jimenez',
         photo: '/images/People/Students/Men/CESAR JIMENEZ.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '22',
+        id: '25',
         name: 'David Gómez',
         photo: '/images/People/Students/Men/DAVID GOMEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '23',
+        id: '26',
         name: 'Eddie Kattan',
         photo: '/images/People/Students/Men/EDDIE KATTAN.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '24',
+        id: '27',
         name: 'Francisco Florez',
         photo: '/images/People/Students/Men/FRANCISCO FLOREZ.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '25',
+        id: '28',
         name: 'Johan Gómez',
         photo: '/images/People/Students/Men/JOHAN GOMEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '26',
+        id: '29',
         name: 'Jorge Galvis',
         photo: '/images/People/Students/Men/JORGE GALVIS.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '27',
+        id: '30',
         name: 'Jorge Vela',
         photo: '/images/People/Students/Men/JORGE VELA.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '28',
+        id: '31',
         name: 'Jose Camargo',
         photo: '/images/People/Students/Men/JOSE CAMARGO.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '29',
+        id: '32',
         name: 'Jose Peña',
         photo: '/images/People/Students/Men/JOSE PEÑA.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '30',
+        id: '33',
         name: 'Juan Carlos Herrera',
         photo: '/images/People/Students/Men/JUAN CARLOS HERRERA.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '31',
+        id: '34',
         name: 'Marcelo Torres',
         photo: '/images/People/Students/Men/MARCELO TORRES.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '32',
+        id: '35',
         name: 'Mauricio Caldeoron',
         photo: '/images/People/Students/Men/MAURICIO CALDEORON.jpeg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '33',
+        id: '36',
         name: 'Miguel Valencia',
         photo: '/images/People/Students/Men/MIGUEL VALENCIA.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '34',
+        id: '37',
         name: 'Nicolay Colorado',
         photo: '/images/People/Students/Men/NICOLAY COLORADO.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '35',
+        id: '38',
         name: 'Pedro Zornoza',
-        photo: '/images/People/Student/Men/PEDRO ZORNOZA.png',
+        photo: '/images/People/Students/Men/PEDRO ZORNOZA.png',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '36',
+        id: '39',
         name: 'Ricardo Jose Gomez',
         photo: '/images/People/Students/Men/RICARDO JOSE GOMEZ.jpg',
         category: 'student',
         created_at: new Date().toISOString()
       },
       {
-        id: '37',
+        id: '40',
         name: 'Prof. Alba Lucia Puentes',
         photo: '/images/People/Workers/ALBA LUCIA PUENTES.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '38',
+        id: '41',
         name: 'Prof. Alexandra Sarmiento',
         photo: '/images/People/Workers/ALEXANDRA SARMIENTO.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '39',
+        id: '42',
         name: 'Prof. Angela Martinez',
         photo: '/images/People/Workers/ANGELA MARTINEZ.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '40',
+        id: '43',
         name: 'Prof. Felipe Amaya',
         photo: '/images/People/Workers/FELIPE AMAYA.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '41',
+        id: '44',
         name: 'Prof. Jessica Cardenas',
         photo: '/images/People/Workers/JESSICA CARDENAS.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '42',
+        id: '45',
         name: 'Prof. Nicolle Angel',
         photo: '/images/People/Workers/NICOLLE ANGEL.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
-      },{
-        id: '43',
+      },
+      {
+        id: '46',
         name: 'Prof. Pastor Jimenez',
         photo: '/images/People/Workers/PASTOR JIMENEZ.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '44',
+        id: '47',
         name: 'Prof. Paula Ortiz',
         photo: '/images/People/Workers/PAULA ORTIZ.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '45',
+        id: '48',
         name: 'Prof. Steven Coy',
         photo: '/images/People/Workers/STEVEN COY.jpeg',
         category: 'teacher',
@@ -466,7 +488,7 @@ const MakeOrder: React.FC = () => {
                       className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto mb-3 sm:mb-4 object-cover border-2 sm:border-4 border-[#BADA55]"
                     />
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-1 sm:mb-2">{person.name}</h3>
-                    <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Estudiante</div>
+                    <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Aprendiz</div>
                     {status === 'ordered' && (
                       <div className="text-green-600 font-semibold text-xs sm:text-sm">✓ Pedido realizado</div>
                     )}
