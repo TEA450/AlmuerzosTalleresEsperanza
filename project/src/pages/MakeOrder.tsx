@@ -334,62 +334,118 @@ const MakeOrder: React.FC = () => {
       },
       {
         id: '40',
+        name: 'Danny Bolívar',
+        photo: '/images/People/Students/Men/DANNY BOLIVAR.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '41',
+        name: 'Diego Sanchez',
+        photo: '/images/People/Students/Men/DIEGO SANCHEZ.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '42',
+        name: 'Edwin Munar',
+        photo: '/images/People/Students/Men/EDWIN MUNAR.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '43',
+        name: 'Helber Clavijo',
+        photo: '/images/People/Students/Men/HELBER CLAVIJO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '44',
+        name: 'Jaime Clavijo',
+        photo: '/images/People/Students/Men/JAIME CLAVIJO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '45',
+        name: 'Jaime García',
+        photo: '/images/People/Students/Men/JAIME GARCIA.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '46',
+        name: 'Juan Andrés Franco',
+        photo: '/images/People/Students/Men/JUAN ANDRES FRANCO.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '47',
+        name: 'Steve Rozembush',
+        photo: '/images/People/Students/Men/STEVE ROZEMBUSH.jpg',
+        category: 'student',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: '48',
         name: 'Prof. Alba Lucia Puentes',
         photo: '/images/People/Workers/ALBA LUCIA PUENTES.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '41',
+        id: '49',
         name: 'Prof. Alexandra Sarmiento',
         photo: '/images/People/Workers/ALEXANDRA SARMIENTO.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '42',
+        id: '50',
         name: 'Prof. Angela Martinez',
         photo: '/images/People/Workers/ANGELA MARTINEZ.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '43',
+        id: '51',
         name: 'Prof. Felipe Amaya',
         photo: '/images/People/Workers/FELIPE AMAYA.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '44',
+        id: '52',
         name: 'Prof. Jessica Cardenas',
         photo: '/images/People/Workers/JESSICA CARDENAS.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '45',
+        id: '53',
         name: 'Prof. Nicolle Angel',
         photo: '/images/People/Workers/NICOLLE ANGEL.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '46',
+        id: '54',
         name: 'Prof. Pastor Jimenez',
         photo: '/images/People/Workers/PASTOR JIMENEZ.jpeg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '47',
+        id: '55',
         name: 'Prof. Paula Ortiz',
         photo: '/images/People/Workers/PAULA ORTIZ.jpg',
         category: 'teacher',
         created_at: new Date().toISOString()
       },
       {
-        id: '48',
+        id: '56',
         name: 'Prof. Steven Coy',
         photo: '/images/People/Workers/STEVEN COY.jpeg',
         category: 'teacher',
