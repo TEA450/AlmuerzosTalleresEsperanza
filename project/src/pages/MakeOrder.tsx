@@ -474,8 +474,8 @@ const MakeOrder: React.FC = () => {
   const students = people.filter(p => p.category === 'student');
   const teachers = people.filter(p => p.category === 'teacher');
 
-  const allOrdersComplete = people.length > 0 && people.every(person => 
-    orders.some(order => order.person_id === person.id)
+  const hasAtLeastOneLunch = orders.some(order =>
+    order.fruit_or_soup || order.juice_or_lemonade || order.main_dish
   );
 
   const handleContinueToSummary = () => {
@@ -694,7 +694,7 @@ const MakeOrder: React.FC = () => {
       )}
 
       {/* Continue Button */}
-      {allOrdersComplete && (
+      {hasAtLeastOneLunch && (
         <div className="text-center">
           <button
             onClick={handleContinueToSummary}
